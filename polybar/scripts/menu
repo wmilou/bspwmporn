@@ -1,0 +1,13 @@
+#!/bin/bash
+#echo " Linux Mint"
+#echo " Debian"
+#echo " Ubuntu"
+
+STATUS=$(cat /sys/class/power_supply/BAT?/status)
+LEVEL=$(cat /sys/class/power_supply/BAT?/capacity)
+
+if [[ "$LEVEL" -lt "20" ]]; then
+	if [[ "$STATUS" == "Discharging" ]]; then
+		notify-send --urgency=critical --expire-time=4000 --icon=battery-caution "Bateria Descarregando" "Está com ${LEVEL}%"
+	fi
+fi

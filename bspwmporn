@@ -50,11 +50,17 @@ _deps_build(){
     libxcb-composite0-dev python3-xcbgen xcb-proto \
     libxcb-image0-dev libxcb-ewmh-dev \
     libxcb-icccm4-dev \
-    libcurl4-openssl-dev libjsoncpp-dev libpulse-dev libmpdclient-dev libasound2-dev libxcb-cursor-dev libxcb-xrm-dev libxcb-xkb-dev libnl-genl-3-dev
+    libcurl4-openssl-dev libjsoncpp-dev libpulse-dev\
+    libmpdclient-dev libasound2-dev libxcb-cursor-dev\
+    libxcb-xrm-dev libxcb-xkb-dev libnl-genl-3-dev
   }
 
 _apt_packs(){
-  sudo apt install -y bspwm sxhkd subversion rofi feh numlockx compton dunst neofetch imagemagick webp unifont gnome-terminal git
+  sudo apt install -y bspwm sxhkd\
+  subversion rofi feh numlockx\
+  compton dunst neofetch imagemagick\
+  webp unifont gnome-terminal git\
+  ranger nvim lxappearance
 }
 
 _build_polybar(){
@@ -63,6 +69,20 @@ _build_polybar(){
   cd polybar/
   sed -i 's/read /#read /g' build.sh
   sudo ./build.sh
+}
+
+_nvim_spacevim_install_config(){
+  #Install SpaceVim on Nvim
+  curl -sLf https://spacevim.org/install.sh | bash -s -- --install neovim 
+  #Clone and Install Config files... By Wedsley Fernando
+  svn export https://github.com/WedsleyFernando/Spacevim/trunk/init.toml
+  svn export https://github.com/WedsleyFernando/Spacevim/trunk/init.vim
+  mv init.toml ${HOME}/.Spacevim.d/init.toml
+  mv init.vim  ${HOME}/.Spacevim/init.vim
+  #Install Font 
+  wget https://raw.githubusercontent.com/romkatv/powerlevel10k-media/master/MesloLGS%20NF%20Regular.ttf 
+  mv MesloLGS\ NF\ Regular.ttf ${HOME}/.local/share/fonts/
+  fc-cache -fv
 }
 
 _git_svn_packs(){

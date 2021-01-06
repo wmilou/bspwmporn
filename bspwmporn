@@ -44,7 +44,7 @@ _updates(){
 }
 
 _deps_build(){
-  sudo apt install -y build-essential \
+    sudo apt install -y build-essential \
     cmake cmake-data pkg-config libcairo2-dev \
     libxcb1-dev libxcb-util0-dev libxcb-randr0-dev \
     libxcb-composite0-dev python3-xcbgen xcb-proto \
@@ -56,11 +56,11 @@ _deps_build(){
   }
 
 _apt_packs(){
-  sudo apt install -y bspwm sxhkd\
-  subversion rofi feh numlockx\
-  compton dunst neofetch imagemagick\
-  webp unifont gnome-terminal git\
-  ranger nvim lxappearance
+   sudo apt install -y bspwm sxhkd\
+   subversion rofi feh numlockx\
+   compton dunst neofetch imagemagick\
+   webp unifont gnome-terminal git\
+   ranger nvim lxappearance fzf
 }
 
 _build_polybar(){

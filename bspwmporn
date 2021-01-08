@@ -60,7 +60,10 @@ _apt_packs(){
     subversion rofi feh numlockx\
     compton dunst neofetch imagemagick\
     ranger neovim lxappearance fzf\
-    webp unifont gnome-terminal git
+    webp unifont gnome-terminal git\
+    python3 python3-pip
+
+    sudo pip3 install sphinx
 
     # Install Cava
     sudo add-apt-repository ppa:hsheth2/ppa && sudo apt-get update && sudo apt-get install cava

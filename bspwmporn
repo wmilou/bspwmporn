@@ -3,8 +3,10 @@
 # script: bspwmporn 
 # describe: Linux Mint, Ubuntu and Debian install bspwm + polybar and more
 # author: Wedsley Fernando Da Silva Milouchine  - <https://github.com/WedsleyFernando>
-# version: 1.0
+# version: 1.1
 # license: GNU GPLv3
+
+version="${0##*/} version 1.1"
 
 [[ $(echo $LANG | cut -c 1-2) == "pt" ]] && _MSG="Não use 'sudo' e nem 'root'" || _MSG="Do not use 'sudo' or 'root'"
 [[ $(id -u) -eq 0 ]] && echo ${_MSG} && exit 1
@@ -22,7 +24,7 @@ usage: ${0##*/} [flags]
     --version,  -v  Show version
     --help,     -h  Show this is message
     --update,   -U  Update your system
-* Wedsley Fernando Da Silva Milouchine  - <https://github.com/WedsleyFernando> - BSPWMPORN 1.0
+* Wedsley Fernando Da Silva Milouchine  - <https://github.com/WedsleyFernando> - BSPWMPORN 1.1
 EOF
 }
 
@@ -32,7 +34,6 @@ if [[ -z $1 || $1 = @(-h|--help) ]]; then
     exit $(( $# ? 0 : 1 ))
 fi
 
-version="${0##*/} version 1.0"
 
 _updates(){
     sudo apt update

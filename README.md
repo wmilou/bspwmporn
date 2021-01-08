@@ -7,11 +7,6 @@ cd bspwmporn/
 sh bspwmporn --install
 ```
 
-Wait until the script ends. For more information run: `./bspwmporn --help`.
-
-# License
-[GNU GPLv3](LICENSE)
-
 # Uninstall
 ```sh
 git clone https://github.com/WedsleyFernando/bspwmporn
@@ -19,3 +14,7 @@ cd bspwmporn/
 sh bspwmporn --uninstall
 ```
 
+Wait until the script ends. For more information run: `./bspwmporn --help`.
+
+# License
+[GNU GPLv3](LICENSE)

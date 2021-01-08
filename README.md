@@ -4,7 +4,7 @@ Linux Mint, Ubuntu and Debian install [bspwm](https://github.com/baskerville/bsp
 ```sh
 git clone https://github.com/WedsleyFernando/bspwmporn
 cd bspwmporn/
-sh bspwmporn --uninstall
+sh bspwmporn --install
 ```
 
 Wait until the script ends. For more information run: `./bspwmporn --help`.

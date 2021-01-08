@@ -75,7 +75,7 @@ _build_polybar(){
     git clone --recursive https://github.com/polybar/polybar
     cd polybar/
     sed -i 's/read /#read /g' build.sh
-    sudo ./build.sh
+    sudo ./build.sh -A -a -p -n -m -c -g 
 }
 
 _nvim_spacevim_install_config(){

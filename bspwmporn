@@ -14,7 +14,7 @@ CURRENT_DIR=$(pwd)
 shopt -s extglob
 
 usage() {
-  cat <<EOF
+cat <<EOF
 usage: ${0##*/} [flags]
   Options:
     --install,  -i  Install bspwmporn 
@@ -28,19 +28,19 @@ EOF
 
 
 if [[ -z $1 || $1 = @(-h|--help) ]]; then
-  usage
-  exit $(( $# ? 0 : 1 ))
+    usage
+    exit $(( $# ? 0 : 1 ))
 fi
 
 version="${0##*/} version 1.0"
 
 _updates(){
-  sudo apt update
-  sudo apt full-upgrade -y
-  sudo apt clean
-  sudo apt autoremove -y
-  sudo apt autoclean
-  exit 0
+    sudo apt update
+    sudo apt full-upgrade -y
+    sudo apt clean
+    sudo apt autoremove -y
+    sudo apt autoclean
+    exit 0
 }
 
 _deps_build(){
@@ -53,65 +53,73 @@ _deps_build(){
     libcurl4-openssl-dev libjsoncpp-dev libpulse-dev\
     libmpdclient-dev libasound2-dev libxcb-cursor-dev\
     libxcb-xrm-dev libxcb-xkb-dev libnl-genl-3-dev
-  }
+}
 
 _apt_packs(){
-   sudo apt install -y bspwm sxhkd\
-   subversion rofi feh numlockx\
-   compton dunst neofetch imagemagick\
-   webp unifont gnome-terminal git\
-   ranger nvim lxappearance fzf
+    sudo apt install -y bspwm sxhkd\
+    subversion rofi feh numlockx\
+    compton dunst neofetch imagemagick\
+    ranger neovim lxappearance fzf\
+    webp unifont gnome-terminal git
+
+    # Install Cava
+    sudo add-apt-repository ppa:hsheth2/ppa && sudo apt-get update && sudo apt-get install cava
 }
 
 _build_polybar(){
-  cd /tmp
-  git clone --recursive https://github.com/polybar/polybar
-  cd polybar/
-  sed -i 's/read /#read /g' build.sh
-  sudo ./build.sh
+    cd /tmp
+    git clone --recursive https://github.com/polybar/polybar
+    cd polybar/
+    sed -i 's/read /#read /g' build.sh
+    sudo ./build.sh
 }
 
 _nvim_spacevim_install_config(){
-  #Install SpaceVim on Nvim
-  curl -sLf https://spacevim.org/install.sh | bash -s -- --install neovim 
-  #Clone and Install Config files... By Wedsley Fernando
-  svn export https://github.com/WedsleyFernando/Spacevim/trunk/init.toml
-  svn export https://github.com/WedsleyFernando/Spacevim/trunk/init.vim
-  mv init.toml ${HOME}/.Spacevim.d/init.toml
-  mv init.vim  ${HOME}/.Spacevim/init.vim
-  #Install Font 
-  wget https://raw.githubusercontent.com/romkatv/powerlevel10k-media/master/MesloLGS%20NF%20Regular.ttf 
-  mv MesloLGS\ NF\ Regular.ttf ${HOME}/.local/share/fonts/
-  fc-cache -fv
+    #Install SpaceVim on Nvim
+    curl -sLf https://spacevim.org/install.sh | bash -s -- --install neovim 
+    #Clone and Install Config files... By Wedsley Fernando
+    svn export https://github.com/WedsleyFernando/Spacevim/trunk/init.toml
+    svn export https://github.com/WedsleyFernando/Spacevim/trunk/init.vim
+    sudo mv init.toml ${HOME}/.SpaceVim.d/
+    sudo mv init.vim ${HOME}/.SpaceVim/
+    #Install Font 
+    wget https://raw.githubusercontent.com/romkatv/powerlevel10k-media/master/MesloLGS%20NF%20Regular.ttf 
+    mv MesloLGS\ NF\ Regular.ttf ${HOME}/.local/share/fonts/
+    fc-cache -fv
 }
 
 _git_svn_packs(){
-  [[ ! -d "${HOME}/.local/share/fonts" ]] && mkdir -p "${HOME}/.local/share/fonts"
-  svn export https://github.com/terroo/fonts/trunk/fonts
-  mv fonts ${HOME}/.local/share/fonts/
-  fc-cache -fv
+    [[ ! -d "${HOME}/.local/share/fonts" ]] && mkdir -p "${HOME}/.local/share/fonts"
+    svn export https://github.com/terroo/fonts/trunk/fonts
+    mv fonts ${HOME}/.local/share/fonts/
+    fc-cache -fv
+}
+
+_install_theme_terminal(){
+    git clone https://github.com/lemnos/theme.sh.git
+    sudo mv theme.sh/theme.sh /usr/bin/terminal-theme
 }
 
 _cfg_all(){
-  cd $CURRENT_DIR
-  mv bspwm/ ${HOME}/.config/ 
-  mv sxhkd/ ${HOME}/.config/ 
-  mv dunst/ ${HOME}/.config/ 
-  mv polybar/ ${HOME}/.config/ 
-  mv rofi/ ${HOME}/.config/
-  mv wallpaper.jpg ${HOME}/.wallpaper.jpg
-  feh --bg-scale ${HOME}/.wallpaper.jpg
-  NETW=$(ip addr | awk '/state UP/ {print $2}' | sed 's/://g')
-  sed -i -r "s/[a-z0-9]+ ;redoo/$NETW/g" ${HOME}/.config/polybar/modules.ini
-  [[ $(grep -i 'mint' /etc/issue) ]] && _d=" Linux Mint"
-  [[ $(grep -i 'ubuntu' /etc/issue) ]] && _d=" Ubuntu"
-  [[ $(grep -i 'debian' /etc/issue) ]] && _d=" Debian"
-  sed -i "s/DISTROOO/$_d/" ${HOME}/.config/polybar/user_modules.ini
-  #sed -i "/$_d/s/^#//" ${HOME}/.config/polybar/scripts/menu
+    cd $CURRENT_DIR
+    mv bspwm/ ${HOME}/.config/ 
+    mv sxhkd/ ${HOME}/.config/ 
+    mv dunst/ ${HOME}/.config/ 
+    mv polybar/ ${HOME}/.config/ 
+    mv rofi/ ${HOME}/.config/
+    mv wallpaper.jpg ${HOME}/.wallpaper.jpg
+    feh --bg-scale ${HOME}/.wallpaper.jpg
+    NETW=$(ip addr | awk '/state UP/ {print $2}' | sed 's/://g')
+    sed -i -r "s/[a-z0-9]+ ;redoo/$NETW/g" ${HOME}/.config/polybar/modules.ini
+    [[ $(grep -i 'mint' /etc/issue) ]] && _d=" Linux Mint"
+    [[ $(grep -i 'ubuntu' /etc/issue) ]] && _d=" Ubuntu"
+    [[ $(grep -i 'debian' /etc/issue) ]] && _d=" Debian"
+    sed -i "s/DISTROOO/$_d/" ${HOME}/.config/polybar/user_modules.ini
+    #sed -i "/$_d/s/^#//" ${HOME}/.config/polybar/scripts/menu
 }
 
 _start(){
-  cat <<EOF
+cat <<EOF
  ________  ________  ________  ___       __   _____ ______   ________  ________  ________  ________      
 |\   __  \|\   ____\|\   __  \|\  \     |\  \|\   _ \  _   \|\   __  \|\   __  \|\   __  \|\   ___  \    
 \ \  \|\ /\ \  \___|\ \  \|\  \ \  \    \ \  \ \  \\\__\ \  \ \  \|\  \ \  \|\  \ \  \|\  \ \  \\ \  \   
@@ -124,40 +132,42 @@ EOF
 }
 
 _ok(){
-  clear
-  echo "INSTALLATION FINISHED!"
-  _start
+    clear
+    echo "INSTALLATION FINISHED!"
+    _start
 }
 
 _install(){
-  _start
-  _apt_packs
-  _deps_build
-  [[ ! $(which cmake 2>/dev/null) ]] && _deps_build
-  _git_svn_packs
-  [[ $(grep -i 'debian' /etc/issue) ]] && sudo apt -y install polybar || _build_polybar
-  _cfg_all
-  _ok
-  exit 0
+    _start
+    _apt_packs
+    _deps_build
+    _nvim_spacevim_install_config
+    _install_theme_terminal
+    [[ ! $(which cmake 2>/dev/null) ]] && _deps_build
+    _git_svn_packs
+    [[ $(grep -i 'debian' /etc/issue) ]] && sudo apt -y install polybar || _build_polybar
+    _cfg_all
+    _ok
+    exit 0
 }
 
 _uninstall(){
-  sudo apt remove -y bspwm rofi
-  sudo rm $(which polybar)
-  rm -rf ${HOME}/.fehbg ${HOME}/.wallpaper.jpg
-  rm -rf ${HOME}/.local/share/fonts/fonts
-  rm -rf ${HOME}/.config/{bspwm,sxhkd,polybar,rofi,dunst}
-  exit 0
+    sudo apt remove -y bspwm rofi
+    sudo rm $(which polybar)
+    rm -rf ${HOME}/.fehbg ${HOME}/.wallpaper.jpg
+    rm -rf ${HOME}/.local/share/fonts/fonts
+    rm -rf ${HOME}/.config/{bspwm,sxhkd,polybar,rofi,dunst}
+    exit 0
 }
 
 while [[ "$1" ]]; do
-  case "$1" in
-    "--install"|"-i") _install ;;
-    "--uninstall"|"-u") _uninstall ;;
-    "--help"|"-h") usage ;;
-    "--version"|"-v") printf "%s\n" "$version" && exit 0 ;;
-    "--update"|"-U") _updates && exit 0 ;;
-    *) echo 'Invalid option.' && usage && exit 1 ;;
-  esac
-  shift
+    case "$1" in
+        "--install"|"-i") _install ;;
+        "--uninstall"|"-u") _uninstall ;;
+        "--help"|"-h") usage ;;
+        "--version"|"-v") printf "%s\n" "$version" && exit 0 ;;
+        "--update"|"-U") _updates && exit 0 ;;
+        *) echo 'Invalid option.' && usage && exit 1 ;;
+    esac
+    shift
 done

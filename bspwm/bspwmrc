@@ -2,17 +2,17 @@
 
 sxhkd &
 
-# Configure two monitors if you have
-if [ "$(xrandr | grep -sw 'connected' | wc -l)" = "2" ]; 
-then
-    bspc monitor HDMI-1 -d I II III IV V 
-    bspc monitor eDP-1  -d VI VII VIII IX X
-    bspc monitor eDP-1  -s HDMI-1
-    xrandr --output HDMI-1 --primary --mode 2560x1080 --rate 75.00 --left-of eDP-1
+# Configure Monitors
+if [ "$(xrandr | grep -sw 'connected' | wc -l)" = "3" ]; then
+  bspc monitor $(bspc query -M | sed -n 1p) -d I II III IV V
+  bspc monitor $(bspc query -M | sed -n 2p) -d VI VII VIII IX X
+  bspc monitor $(bspc query -M | sed -n 3p) -d XI XII XIII XIV XV 
+elif [ "$(xrandr | grep -sw 'connected' | wc -l)" = "2" ]; then
+  bspc monitor $(bspc query -M | sed -n 1p) -d I II III IV V
+  bspc monitor $(bspc query -M | sed -n 2p) -d VI VII VIII IX X
 else
-    bspc monitor -d I II III IV V VI VII VIII IX X
+  bspc monitor -d I II III IV V VI VII VIII IX X 
 fi
-
 
 
 bspc config border_width         6
@@ -39,7 +39,9 @@ bspc rule -a mytask state=floating
 bspc rule -a Kupfer.py focus=on
 bspc rule -a Screenkey manage=off
 
-$HOME/.config/polybar/launch.sh &
+
+# call init script polybar
+$HOME/.config/polybar/launch.sh --hack &
 $HOME/.fehbg
 /usr/bin/numlockx on
 #/usr/libexec/gsd-xsettings &

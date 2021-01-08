@@ -76,7 +76,7 @@ inputbar {
 
 listview {
     background-color:               @al;
-    padding:                        10px 10px 10px 10px;
+    padding:                        20px 20px 20px 20px;
     columns:                        1;
     lines:                          5;
     spacing:                        5px;
@@ -99,8 +99,8 @@ element {
     background-color:               @al;
     text-color:                     @fg;
     orientation:                    horizontal;
-    border-radius:                  0px;
-    padding:                        6px 6px 6px -20px;
+    border-radius:                  12px;
+    padding:                        6px 6px 6px 0px;
 }
 
 element-icon {

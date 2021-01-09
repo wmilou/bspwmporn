@@ -52,7 +52,7 @@ _deps_build(){
     libxcb-image0-dev libxcb-ewmh-dev \
     libxcb-icccm4-dev \ libcurl4-openssl-dev libjsoncpp-dev libpulse-dev\
     libmpdclient-dev libasound2-dev libxcb-cursor-dev\
-    libxcb-xrm-dev libxcb-xkb-dev libnl-genl-3-dev
+    libxcb-xrm-dev libxcb-xkb-dev libnl-genl-3-dev libcurl4-openssl-dev
 }
 
 _apt_packs(){
@@ -84,6 +84,8 @@ _nvim_spacevim_install_config(){
     svn export https://github.com/WedsleyFernando/Spacevim/trunk/init.toml
     svn export https://github.com/WedsleyFernando/Spacevim/trunk/init.vim
     svn export https://github.com/WedsleyFernando/Spacevim/trunk/main.vim
+    sudo mv ${HOME}/.SpaceVim.d/init.toml ${HOME}/.SpaceVim.d/init.toml.old
+    sudo mv ${HOME}/.SpaceVim/init.vim ${HOME}/.SpaceVim/init.vim.old
     sudo mv init.toml ${HOME}/.SpaceVim.d/
     sudo mv init.vim ${HOME}/.SpaceVim/
     sudo mv main.vim ${HOME}/.SpaceVim/

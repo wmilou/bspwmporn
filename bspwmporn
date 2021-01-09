@@ -50,8 +50,7 @@ _deps_build(){
     libxcb1-dev libxcb-util0-dev libxcb-randr0-dev \
     libxcb-composite0-dev python3-xcbgen xcb-proto \
     libxcb-image0-dev libxcb-ewmh-dev \
-    libxcb-icccm4-dev \
-    libcurl4-openssl-dev libjsoncpp-dev libpulse-dev\
+    libxcb-icccm4-dev \ libcurl4-openssl-dev libjsoncpp-dev libpulse-dev\
     libmpdclient-dev libasound2-dev libxcb-cursor-dev\
     libxcb-xrm-dev libxcb-xkb-dev libnl-genl-3-dev
 }
@@ -84,8 +83,10 @@ _nvim_spacevim_install_config(){
     #Clone and Install Config files... By Wedsley Fernando
     svn export https://github.com/WedsleyFernando/Spacevim/trunk/init.toml
     svn export https://github.com/WedsleyFernando/Spacevim/trunk/init.vim
+    svn export https://github.com/WedsleyFernando/Spacevim/trunk/main.vim
     sudo mv init.toml ${HOME}/.SpaceVim.d/
     sudo mv init.vim ${HOME}/.SpaceVim/
+    sudo mv main.vim ${HOME}/.SpaceVim/
     #Install Font 
     wget https://raw.githubusercontent.com/romkatv/powerlevel10k-media/master/MesloLGS%20NF%20Regular.ttf 
     mv MesloLGS\ NF\ Regular.ttf ${HOME}/.local/share/fonts/

@@ -128,7 +128,7 @@ _cfg_all(){
     mv dunst/ ${HOME}/.config/ 
     mv polybar/ ${HOME}/.config/ 
     mv rofi/ ${HOME}/.config/
-    mv groot.jpg ${HOME}/.wallpaper.jpg
+    mv wallpapers/groot.jpg ${HOME}/.wallpaper.jpg
     feh --bg-scale ${HOME}/.wallpaper.jpg
     NETW=$(ip addr | awk '/state UP/ {print $2}' | sed 's/://g')
     sed -i -r "s/[a-z0-9]+ ;redoo/$NETW/g" ${HOME}/.config/polybar/modules.ini

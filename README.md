@@ -1,5 +1,5 @@
 # bspwmporn
-Linux Mint, Ubuntu and Debian install [bspwm](https://github.com/baskerville/bspwm), [Polybar](https://github.com/polybar/polybar), [Rofi](https://github.com/davatorium/rofi), [Spacevim](https://github.com/WedsleyFernando/Spacevim) 
+Linux Mint, Ubuntu and Debian install [bspwm](https://github.com/baskerville/bspwm), [Polybar](https://github.com/polybar/polybar), [Rofi](https://github.com/davatorium/rofi)
 # Installation
 ```sh
 git clone https://github.com/WedsleyFernando/bspwmporn

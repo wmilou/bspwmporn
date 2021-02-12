@@ -6,7 +6,7 @@
 # version: 1.1
 # license: GNU GPLv3
 
-version="${0##*/} version 1.1"
+version="${0##*/} version 1.2"
 
 [[ $(echo $LANG | cut -c 1-2) == "pt" ]] && _MSG="Não use 'sudo' e nem 'root'" || _MSG="Do not use 'sudo' or 'root'"
 [[ $(id -u) -eq 0 ]] && echo ${_MSG} && exit 1
@@ -33,12 +33,16 @@ _start
 cat <<EOF
 usage: ${0##*/} [flags]
   Options:
-    --install,  -i  Install bspwmporn 
-    --unistall, -u  Uninstall bspwmporn
-    --version,  -v  Show version
-    --help,     -h  Show this is message
-    --update,   -U  Update your system
-* Wedsley Fernando Da Silva Milouchine  - <https://github.com/WedsleyFernando> - BSPWMPORN 1.1
+    --install,   -i  Install bspwmporn  (ODB)
+    --unistall,  -u  Uninstall bspwmporn
+    --dotfiles,  -d  Install only dotfiles 
+    --show-deps, -s  Install only dotfiles 
+    --version,   -v  Show version
+    --help,      -h  Show this is message
+    --update,    -U  Update your system (ODB)
+
+* ODB  Only debian-based
+* Wedsley Fernando Da Silva Milouchine  - <https://github.com/WedsleyFernando> - BSPWMPORN 1.2
 EOF
 }
 
@@ -48,6 +52,44 @@ if [[ -z $1 || $1 = @(-h|--help) ]]; then
     exit $(( $# ? 0 : 1 ))
 fi
 
+
+_show_dependency() {
+_start
+cat <<EOF
+    List of Dependencys
+
+        BROWSER 
+            Opera
+            Vimiun (Extencion for Opera)
+            
+        WINDOW MANAGER
+            bspwm  (Manage window)
+            sxhkd (shortcuts)
+            feh (For set Background)
+            picom (For animations)
+
+        NOTIFICATION
+            dunst
+
+        MENU
+            rofi
+
+        TERMINAL
+            fonts (powerline fonts)
+            fzf
+            neovim
+            ranger 
+            gnome-terminal
+            git
+            compton
+            numlockx
+            imagemagick
+            webp
+            lxappearance
+            neofetch
+            cava
+EOF
+}
 
 _updates(){
     sudo apt update
@@ -77,6 +119,7 @@ _apt_packs(){
     webp unifont gnome-terminal git\
     python3 python3-pip
 
+    #pip install
     sudo pip3 install sphinx
 
     # Install Cava
@@ -91,23 +134,6 @@ _build_polybar(){
     sudo ./build.sh -A -a -p -n -m -c -g 
 }
 
-_nvim_spacevim_install_config(){
-    #Install SpaceVim on Nvim
-    curl -sLf https://spacevim.org/install.sh | bash -s -- --install neovim 
-    #Clone and Install Config files... By Wedsley Fernando
-    svn export https://github.com/WedsleyFernando/Spacevim/trunk/init.toml
-    svn export https://github.com/WedsleyFernando/Spacevim/trunk/init.vim
-    svn export https://github.com/WedsleyFernando/Spacevim/trunk/main.vim
-    sudo mv ${HOME}/.SpaceVim.d/init.toml ${HOME}/.SpaceVim.d/init.toml.old
-    sudo mv ${HOME}/.SpaceVim/init.vim ${HOME}/.SpaceVim/init.vim.old
-    sudo mv init.toml ${HOME}/.SpaceVim.d/
-    sudo mv init.vim ${HOME}/.SpaceVim/
-    sudo mv main.vim ${HOME}/.SpaceVim/
-    #Install Font 
-    wget https://raw.githubusercontent.com/romkatv/powerlevel10k-media/master/MesloLGS%20NF%20Regular.ttf 
-    mv MesloLGS\ NF\ Regular.ttf ${HOME}/.local/share/fonts/
-    fc-cache -fv
-}
 
 _git_svn_packs(){
     [[ ! -d "${HOME}/.local/share/fonts" ]] && mkdir -p "${HOME}/.local/share/fonts"
@@ -128,6 +154,7 @@ _cfg_all(){
     mv dunst/ ${HOME}/.config/ 
     mv polybar/ ${HOME}/.config/ 
     mv rofi/ ${HOME}/.config/
+    mv picom/ ${HOME}/.config/
     mv wallpapers/groot.jpg ${HOME}/.wallpaper.jpg
     feh --bg-scale ${HOME}/.wallpaper.jpg
     NETW=$(ip addr | awk '/state UP/ {print $2}' | sed 's/://g')
@@ -136,7 +163,17 @@ _cfg_all(){
     [[ $(grep -i 'ubuntu' /etc/issue) ]] && _d=" Ubuntu"
     [[ $(grep -i 'debian' /etc/issue) ]] && _d=" Debian"
     sed -i "s/DISTROOO/$_d/" ${HOME}/.config/polybar/user_modules.ini
-    #sed -i "/$_d/s/^#//" ${HOME}/.config/polybar/scripts/menu
+}
+
+_cfg_all_dotfiles(){
+    cd $CURRENT_DIR
+    mv bspwm/ ${HOME}/.config/ 
+    mv sxhkd/ ${HOME}/.config/ 
+    mv dunst/ ${HOME}/.config/ 
+    mv polybar/ ${HOME}/.config/ 
+    mv rofi/ ${HOME}/.config/
+    mv picom/ ${HOME}/.config/
+    mv wallpapers/groot.jpg ${HOME}/.wallpaper.jpg
 }
 
 
@@ -150,11 +187,18 @@ _install(){
     _start
     _apt_packs
     _deps_build
-    # _nvim_spacevim_install_config
     _install_theme_terminal
     [[ ! $(which cmake 2>/dev/null) ]] && _deps_build
     _git_svn_packs
     [[ $(grep -i 'debian' /etc/issue) ]] && sudo apt -y install polybar || _build_polybar
+    _cfg_all
+    _ok
+    exit 0
+}
+
+_install_dotfiles(){
+    _start
+    _install_theme_terminal
     _cfg_all
     _ok
     exit 0
@@ -165,7 +209,7 @@ _uninstall(){
     sudo rm $(which polybar)
     rm -rf ${HOME}/.fehbg ${HOME}/.wallpaper.jpg
     rm -rf ${HOME}/.local/share/fonts/fonts
-    rm -rf ${HOME}/.config/{bspwm,sxhkd,polybar,rofi,dunst}
+    rm -rf ${HOME}/.config/{bspwm,sxhkd,polybar,rofi,dunst,picom}
     exit 0
 }
 
@@ -173,6 +217,8 @@ while [[ "$1" ]]; do
     case "$1" in
         "--install"|"-i") _install ;;
         "--uninstall"|"-u") _uninstall ;;
+        "--dotfiles"|"-d") _install_dotfiles ;;
+        "--show-deps"|"-s") _show_dependency ;;
         "--help"|"-h") usage ;;
         "--version"|"-v") printf "%s\n" "$version" && exit 0 ;;
         "--update"|"-U") _updates && exit 0 ;;

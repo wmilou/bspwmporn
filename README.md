@@ -16,9 +16,13 @@ sh bspwmporn --uninstall
 
 Wait until the script ends. For more information run: `./bspwmporn --help`.
 
-# Depencency
-If you use Touchpad Install
-[Gestures](https://github.com/bulletmark/libinput-gestures)
+# Depencencys
+### For Animations
+>  [Picom](https://github.com/jonaburg/picom) (Required)
+
+### Gestures 
+> If you use touchpad, install 
+[Gestures](https://github.com/bulletmark/libinput-gestures) (Optional)
 
 # License
 [GNU GPLv3](LICENSE)

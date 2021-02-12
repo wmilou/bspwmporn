@@ -28,10 +28,10 @@ else
 fi
 
 
-bspc config border_width         6
-bspc config window_gap           8
+bspc config border_width         0
+bspc config window_gap           9
 
-bspc config split_ratio          0.52
+bspc config split_ratio          0
 bspc config borderless_monocle   true
 bspc config gapless_monocle      true
 
@@ -58,6 +58,8 @@ bspc rule -a Screenkey manage=off
 $HOME/.config/polybar/launch.sh --shapes &
 # call background setter
 $HOME/.fehbg
+#call Picom transition effect
+picom --experimental-backend  --corner-radius 10 &
 #set on numlock
 /usr/bin/numlockx on
 #set to abnt2 BR layout keyboard

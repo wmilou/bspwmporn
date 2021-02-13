@@ -1,5 +1,6 @@
-# bspwmporn
+# BSPWMPORN
 Linux Mint, Ubuntu and Debian install [bspwm](https://github.com/baskerville/bspwm), [Polybar](https://github.com/polybar/polybar), [Rofi](https://github.com/davatorium/rofi)
+
 # Installation
 ```sh
 git clone https://github.com/WedsleyFernando/bspwmporn
@@ -13,6 +14,22 @@ git clone https://github.com/WedsleyFernando/bspwmporn
 cd bspwmporn/
 sh bspwmporn --uninstall
 ```
+
+# Other distributions
+Other distributions, need install all dependencys 
+```sh
+git clone https://github.com/WedsleyFernando/bspwmporn
+cd bspwmporn/
+sh bspwmporn --show-deps
+```
+and, install only dotfiles
+
+```sh
+git clone https://github.com/WedsleyFernando/bspwmporn
+cd bspwmporn/
+sh bspwmporn --dotfiles
+```
+
 
 Wait until the script ends. For more information run: `./bspwmporn --help`.
 

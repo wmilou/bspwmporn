@@ -17,17 +17,23 @@ sh bspwmporn --uninstall
 Wait until the script ends. For more information run: `./bspwmporn --help`.
 
 # Depencencys
-
+---------------------------------------------------------------------------------------------
 ### BROWSER 
 	Opera                                 { https://www.opera.com/pt-br }
 	Extension of Chrome for Opera 
 	Vimium (Extension for Opera)          { Extension for Google Chrome}
 	
+	
+---------------------------------------------------------------------------------------------
+
 ### WINDOW MANAGER
 	bspwm  (Manage window)                { https://github.com/baskerville/bspwm }
 	sxhkd (shortcuts)                     { https://github.com/baskerville/sxhkd }
 	feh (For set Background)              
 	picom (For animations)                { https://github.com/jonaburg/picom }
+	
+	
+---------------------------------------------------------------------------------------------
 
 ### TERMINAL
 	fonts (powerline fonts)               { https://github.com/romkatv/powerlevel10k }
@@ -43,16 +49,24 @@ Wait until the script ends. For more information run: `./bspwmporn --help`.
 	lxappearance
 	neofetch
 	cava
+	
+--------------------------------------------------------------------------------------------
 
 ### NOTIFICATION
 	dunst                                 { https://github.com/dunst-project/dunst}
 
+---------------------------------------------------------------------------------------------
+
 ### MENU
 	rofi                                  { https://github.com/davatorium/rofi }
 
+---------------------------------------------------------------------------------------------
+
 ### TOUCHPAD
 	Gestures                              { https://github.com/bulletmark/libinput-gestures }
-
+	
+	
+---------------------------------------------------------------------------------------------
 
 # License
 [GNU GPLv3](LICENSE)

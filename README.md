@@ -17,6 +17,7 @@ sh bspwmporn --uninstall
 Wait until the script ends. For more information run: `./bspwmporn --help`.
 
 # Depencencys
+### List of dependencys
 ---------------------------------------------------------------------------------------------
 ### BROWSER 
 	Opera                                 { https://www.opera.com/pt-br }

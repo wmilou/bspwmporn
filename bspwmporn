@@ -59,35 +59,39 @@ cat <<EOF
     List of Dependencys
 
         BROWSER 
-            Opera
-            Vimiun (Extencion for Opera)
+            Opera                                 { https://www.opera.com/pt-br }
+            Extension of Chrome for Opera 
+            Vimium (Extension for Opera)          { Extension for Google Chrome}
             
         WINDOW MANAGER
-            bspwm  (Manage window)
-            sxhkd (shortcuts)
-            feh (For set Background)
-            picom (For animations)
-
-        NOTIFICATION
-            dunst
-
-        MENU
-            rofi
+            bspwm  (Manage window)                { https://github.com/baskerville/bspwm }
+            sxhkd (shortcuts)                     { https://github.com/baskerville/sxhkd }
+            feh (For set Background)              
+            picom (For animations)                { https://github.com/jonaburg/picom }
 
         TERMINAL
-            fonts (powerline fonts)
+            fonts (powerline fonts)               { https://github.com/romkatv/powerlevel10k }
             fzf
-            neovim
+            neovim(With SpaceVim)                 { https://github.com/WedsleyFernando/Spacevim }
             ranger 
             gnome-terminal
             git
             compton
             numlockx
-            imagemagick
+            imagemagick (Depedency of Feh) 
             webp
             lxappearance
             neofetch
             cava
+
+        NOTIFICATION
+            dunst                                 { https://github.com/dunst-project/dunst}
+
+        MENU
+            rofi                                  { https://github.com/davatorium/rofi }
+
+        TOUCHPAD
+            Gestures                              { https://github.com/bulletmark/libinput-gestures }
 EOF
 }
 

@@ -14,6 +14,7 @@ git clone https://github.com/WedsleyFernando/bspwmporn
 cd bspwmporn/
 sh bspwmporn --uninstall
 ```
+Wait until the script ends. For more information run: `./bspwmporn --help`.
 
 # Other distributions
 Other distributions, need install all dependencys 
@@ -29,9 +30,6 @@ git clone https://github.com/WedsleyFernando/bspwmporn
 cd bspwmporn/
 sh bspwmporn --dotfiles
 ```
-
-
-Wait until the script ends. For more information run: `./bspwmporn --help`.
 
 # Depencencys
 ### List of dependencys

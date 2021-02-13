@@ -52,6 +52,7 @@ sh bspwmporn --dotfiles
 ---------------------------------------------------------------------------------------------
 
 ### TERMINAL
+	zsh
 	fonts (powerline fonts)               { https://github.com/romkatv/powerlevel10k }
 	fzf
 	neovim(With SpaceVim)                 { https://github.com/WedsleyFernando/Spacevim }

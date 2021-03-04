@@ -10,12 +10,12 @@ THIRD_MONITOR=$(xrandr | grep connected | awk '{i++}i==3'| awk '{print $1}')
 
 sxhkd &
 
-# Configure Monitors
+ Configure Monitors
 if [ "$(xrandr | grep -sw 'connected' | wc -l)" = "3" ]; then
   bspc monitor $(bspc query -M | sed -n 1p) -d I II III IV V
   bspc monitor $(bspc query -M | sed -n 2p) -d VI VII VIII IX X
   bspc monitor $(bspc query -M | sed -n 3p) -d XI XII XIII XIV XV 
-  #Set Monitors Side and output 
+  Set Monitors Side and output 
   xrandr --output $SECOND_MONITOR --$SECOND_MONITOR_SIDE-of $PRINCIPAL  
   xrandr --output $THIRD_MONITOR --$THIRD_MONITOR_SIDE-of $PRINCIPAL  
 elif [ "$(xrandr | grep -sw 'connected' | wc -l)" = "2" ]; then
@@ -29,7 +29,7 @@ fi
 
 
 bspc config border_width         0
-bspc config window_gap           9
+bspc config window_gap           10
 
 bspc config split_ratio          0
 bspc config borderless_monocle   true
@@ -66,5 +66,5 @@ picom --experimental-backend  --corner-radius 10 &
 setxkbmap -model abnt2 -layout br -variant abnt2
 #init dunst notification 
 dunst &
-compton &
+#compton &
 #mytask &

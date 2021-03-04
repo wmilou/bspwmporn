@@ -6,7 +6,7 @@
 # version: 1.1
 # license: GNU GPLv3
 
-version="${0##*/} version 1.2"
+version="${0##*/} version 1.3"
 
 [[ $(echo $LANG | cut -c 1-2) == "pt" ]] && _MSG="Não use 'sudo' e nem 'root'" || _MSG="Do not use 'sudo' or 'root'"
 [[ $(id -u) -eq 0 ]] && echo ${_MSG} && exit 1
@@ -42,7 +42,7 @@ usage: ${0##*/} [flags]
     --update,    -U  Update your system (ODB)
 
 * ODB  Only debian-based
-* Wedsley Fernando Da Silva Milouchine  - <https://github.com/WedsleyFernando> - BSPWMPORN 1.2
+* Wedsley Fernando Da Silva Milouchine  - <https://github.com/WedsleyFernando> - BSPWMPORN 1.3
 EOF
 }
 
@@ -68,6 +68,7 @@ cat <<EOF
             sxhkd (shortcuts)                     { https://github.com/baskerville/sxhkd }
             feh (For set Background)              
             picom (For animations)                { https://github.com/jonaburg/picom }
+            compton
 
         TERMINAL
             fonts (powerline fonts)               { https://github.com/romkatv/powerlevel10k }
@@ -76,7 +77,6 @@ cat <<EOF
             ranger 
             gnome-terminal
             git
-            compton
             numlockx
             imagemagick (Depedency of Feh) 
             webp
@@ -110,7 +110,8 @@ _deps_build(){
     libxcb1-dev libxcb-util0-dev libxcb-randr0-dev \
     libxcb-composite0-dev python3-xcbgen xcb-proto \
     libxcb-image0-dev libxcb-ewmh-dev \
-    libxcb-icccm4-dev \ libcurl4-openssl-dev libjsoncpp-dev libpulse-dev\
+    libxcb-icccm4-dev \ 
+    libcurl4-openssl-dev libjsoncpp-dev libpulse-dev\
     libmpdclient-dev libasound2-dev libxcb-cursor-dev\
     libxcb-xrm-dev libxcb-xkb-dev libnl-genl-3-dev libcurl4-openssl-dev
 }

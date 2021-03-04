@@ -9,7 +9,7 @@ super + shift + u
     ${HOME}/.config/rofi/scripts/mpd.sh
 
 # Screenshot Print
-Print
+super + i
     gnome-screenshot --file=${HOME}/Pictures/captura-$(date "+%d-%m-%Y-%H-%M-%S").png && notify-send -t 4000 --icon=camera-photo-symbolic.symbolic "Screenshot realizado" "Gravado no diretório"
     #import -window root ${HOME}/Imagens/capturas/captura-$(date "+%d-%m-%Y-%H-%M-%S").png && notify-send -t 4000 --icon=camera-photo-symbolic.symbolic "Screenshot realizado" "Gravado no diretório"
 
@@ -83,15 +83,19 @@ shift + Pri[urgency_critical]
 
 # terminal emulator
 super + Return
-	gnome-terminal
+	termite 
 
 # alternative terminal emulator
 super + shift + i
 	gnome-screenshot -i
 
 # program launcher
-super + d
+super + space
         ${HOME}/.config/rofi/scripts/apps.sh
+
+# search launcher
+super + d
+        ${HOME}/.config/rofi/scripts/websearch.sh
 
 # make sxhkd reload its configuration files:
 super + Escape

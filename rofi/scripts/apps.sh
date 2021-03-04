@@ -31,8 +31,7 @@ case $chosen in
         gnome-terminal &
         ;;
     $all)
-        rofi -config ~/.config/rofi/themes/config.simple -show drun -display-drun 'Apps ' -padding 18 -width 50 -location 0 -lines 10 -columns 3 -show-icons -icon-theme 'Papirus' -font 'Fantasque Sans Mono 13'
-        # rofi -show drun -theme ~/.config/rofi/themes/apps.rasi &
+        ~/.config/rofi/scripts/launcher.sh &
         ;;
     $files)
         nautilus &

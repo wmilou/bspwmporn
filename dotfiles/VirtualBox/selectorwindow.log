@@ -1,0 +1,18 @@
+00:00:02.947024 VirtualBox GUI VM Selector Window 6.1.18 r142142 linux.amd64 (Feb 16 2021 07:45:49) release log
+00:00:02.947028 Log opened 2021-03-30T23:05:53.329546000Z
+00:00:02.947029 Build Type: release
+00:00:02.947035 OS Product: Linux
+00:00:02.947037 OS Release: 5.11.8-arch1-1
+00:00:02.947039 OS Version: #1 SMP PREEMPT Sun, 21 Mar 2021 01:55:51 +0000
+00:00:02.947080 DMI Product Name: Aspire A315-53
+00:00:02.947098 DMI Product Version: V1.21
+00:00:02.947112 Firmware type: BIOS
+00:00:02.947226 Host RAM: 7831MB (7.6GB) total, 6384MB (6.2GB) available
+00:00:02.947235 Executable: /usr/lib/virtualbox/VirtualBox
+00:00:02.947236 Process ID: 3671933
+00:00:02.947236 Package type: LINUX_64BITS_GENERIC (OSE)
+00:00:02.947322 Qt version: 5.15.2
+00:00:03.061285 GUI: UIMediumEnumerator: Medium-enumeration started...
+00:00:04.485780 GUI: UIDesktopWidgetWatchdog::sltHandleHostScreenAvailableGeometryCalculated: Screen 0 work area is actually resized to: 2570x44 x 668x680
+00:00:04.519031 GUI: UIDesktopWidgetWatchdog::sltHandleHostScreenAvailableGeometryCalculated: Screen 1 work area is actually resized to: 3248x44 x 668x335
+00:00:04.544867 GUI: UIMediumEnumerator: Medium-enumeration finished!

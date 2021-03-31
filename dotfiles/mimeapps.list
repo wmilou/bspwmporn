@@ -1,0 +1,13 @@
+[Default Applications]
+x-scheme-handler/postman=Postman.desktop
+text/html=opera.desktop
+x-scheme-handler/http=opera.desktop
+x-scheme-handler/https=opera.desktop
+x-scheme-handler/about=opera.desktop
+x-scheme-handler/unknown=opera.desktop
+x-scheme-handler/eclipse+command x-scheme-handler/eclipse+mpc=_usr_lib_eclipse_.desktop
+application/pdf=org.pwmt.zathura.desktop
+
+[Added Associations]
+text/csv=nvim.desktop;
+text/html=opera.desktop;

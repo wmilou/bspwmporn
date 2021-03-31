@@ -1,0 +1,219 @@
+#
+# wm independent hotkeys
+#
+#super + x
+#	$HOME/.local/bin/lockscreen
+
+
+# Screenshot Print
+super + i
+    gnome-screenshot --file=${HOME}/Pictures/captura-$(date "+%d-%m-%Y-%H-%M-%S").png && notify-send -t 4000 --icon=camera-photo-symbolic.symbolic "Screenshot realizado" "Gravado no diretório"
+    #import -window root ${HOME}/Imagens/capturas/captura-$(date "+%d-%m-%Y-%H-%M-%S").png && notify-send -t 4000 --icon=camera-photo-symbolic.symbolic "Screenshot realizado" "Gravado no diretório"
+
+shift + Pri[urgency_critical]
+    background = "#900000"
+    foreground = "#ffffff"
+    frame_color = "#ff0000"
+    timeout = 0
+    # Icon for notifications with critical urgency, uncomment to enable
+    #icon = /path/to/icon
+​
+# Every section that isn't one of the above is interpreted as a rules to
+# override settings for certain messages.
+# Messages can be matched by "appname", "summary", "body", "icon", "category",
+# "msg_urgency" and you can override the "timeout", "urgency", "foreground",
+# "background", "new_icon" and "format".
+# Shell-like globbing will get expanded.
+#
+# SCRIPTING
+# You can specify a script that gets run when the rule matches by
+# setting the "script" option.
+# The script will be called as follows:
+#   script appname summary body icon urgency
+# where urgency can be "LOW", "NORMAL" or "CRITICAL".
+#
+# NOTE: if you don't want a notification to be displayed, set the format
+# to "".
+# NOTE: It might be helpful to run dunst -print in a terminal in order
+# to find fitting options for rules.
+​
+#[espeak]
+#    summary = "*"
+#    script = dunst_espeak.sh
+​
+#[script-test]
+#    summary = "*script*"
+#    script = dunst_test.sh
+​
+#[ignore]
+#    # This notification will not be displayed
+#    summary = "foobar"
+#    format = ""
+​
+#[history-ignore]
+#    # This notification will not be saved in history
+#    summary = "foobar"
+#    history_ignore = yes
+​
+#[signed_on]
+#    appname = Pidgin
+#    summary = "*signed on*"
+#    urgency = low
+#
+#[signed_off]
+#    appname = Pidgin
+#    summary = *signed off*
+#    urgency = low
+#
+#[says]
+#    appname = Pidgin
+#    summary = *says*
+#    urgency = critical
+#
+#[twitter]
+#    appname = Pidgin
+#    summary = *twitter.com*
+#    urgency = normal
+#
+# vim: ft=cfgnt
+    import ${HOME}/Pictures/captura-$(date "+%d-%m-%Y-%H-%M-%S").png && notify-send -t 4000 --icon=camera-photo "Screenshot realizado" "Gravado no diretório"
+
+# terminal emulator
+super + Return
+	termite 
+
+# alternative terminal emulator
+super + shift + i
+	gnome-screenshot -i
+
+# Playerctl 
+super + shift + u
+        ${HOME}/.config/rofi/bin/applet_mpd
+
+# Volume control
+super + shift + v
+        ${HOME}/.config/rofi/bin/applet_volume
+
+#Session control
+super + End
+        ${HOME}/.config/rofi/bin/applet_powermenu
+# program launcher
+super + space
+        ${HOME}/.config/rofi/bin/launcher_colorful
+
+# search launcher
+super + d
+        ${HOME}/.config/rofi/custom_scripts/websearch-google.sh
+
+# search launcher
+super + d + shift
+        ${HOME}/.config/rofi/custom_scripts/websearch.sh
+# make sxhkd reload its configuration files:
+super + Escape
+	pkill -USR1 -x sxhkd && $HOME/.config/polybar/launch.sh
+
+#
+# bspwm hotkeys
+#
+
+# quit/restart bspwm
+super + alt + {q,r}
+	bspc {quit,wm -r}
+
+# close and kill
+super + {_,shift + }w
+	bspc node -{c,k}
+
+# alternate between the tiled and monocle layout
+super + m
+	bspc desktop -l next
+
+# send the newest marked node to the newest preselected node
+super + y
+	bspc node newest.marked.local -n newest.!automatic.local
+
+# swap the current node and the biggest node
+super + g
+	bspc node -s biggest
+
+#
+# state/flags
+#
+
+# set the window state
+super + {t,shift + t,s,f}
+	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+
+# set the node flags
+super + ctrl + {m,x,y,z}
+	bspc node -g {marked,locked,sticky,private}
+
+#
+# focus/swap
+#
+
+# focus the node in the given direction
+super + {_,shift + }{h,j,k,l}
+	bspc node -{f,s} {west,south,north,east}
+
+# focus the node for the given path jump
+super + {p,b,comma,period}
+	bspc node -f @{parent,brother,first,second}
+
+# focus the next/previous node in the current desktop
+super + {_,shift + }c
+	bspc node -f {next,prev}.local
+
+# focus the next/previous desktop in the current monitor
+super + bracket{left,right}
+	bspc desktop -f {prev,next}.local
+
+# focus the last node/desktop
+super + {grave,Tab}
+	bspc {node,desktop} -f last
+
+# focus the older or newer node in the focus history
+super + {o,i}
+	bspc wm -h off; \
+	bspc node {older,newer} -f; \
+	bspc wm -h on
+
+# focus or send to the given desktop
+super + {_,shift + }{1-9,0}
+	bspc {desktop -f,node -d} '^{1-9,10}'
+
+#
+# preselect
+#
+
+# preselect the direction
+super + ctrl + {h,j,k,l}
+	bspc node -p {west,south,north,east}
+
+# preselect the ratio
+super + ctrl + {1-9}
+	bspc node -o 0.{1-9}
+
+# cancel the preselection for the focused node
+super + ctrl + space
+	bspc node -p cancel
+
+# cancel the preselection for the focused desktop
+super + ctrl + shift + space
+	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
+
+#
+# move/resize
+#
+
+# expand a window by moving one of its side outward
+super + alt + {h,j,k,l}
+	bspc node -z {left -10 0,bottom 0 10,top 0 -10,right 10 0}
+
+# contract a window by moving one of its side inward
+super + alt + shift + {h,j,k,l}
+	bspc node -z {right -10 0,top 0 10,bottom 0 -10,left 10 0}
+
+# move a floating window
+super + {Left,Down,Up,Right}
+	bspc node -v {-10 0,0 10,0 -10,10 0}
